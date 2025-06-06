@@ -3,10 +3,15 @@ import json
 from random import choice
 
 from fastapi import FastAPI, Query
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 
 app = FastAPI(description="An API to find clues for crossword answers.")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"]
+)
 
 
 class DistanceMode(str, Enum):
