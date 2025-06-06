@@ -6,7 +6,8 @@ from pathlib import Path
 CLUE_NUMBER_REGEX = re.compile("^[0-9]+\\. ")
 
 BLACKLIST = ["-across", "-down", "this puzzle", "today's theme",
-             "hidden theme", "starred clue", "this crossword"]
+             "hidden theme", "starred clue", "this crossword",
+             "with [0-9]+ (down|across)"]
 
 
 def process_direction(data, direction, database):
@@ -19,7 +20,7 @@ def process_direction(data, direction, database):
 
         # Skip clues relative to other clues or puzzle
         for x in BLACKLIST:
-            if x in clue_stripped.lower():
+            if re.search(x, clue_stripped.lower()) is not None:
                break
         else:
             try:
