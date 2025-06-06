@@ -10,9 +10,5 @@
       "src": "/(.*)",
       "dest": "api.py"
     }
-  ],
-  "excludeFiles": [
-    "nyt_crosswords/**",
-    "collect_clues.py"
   ]
 }
