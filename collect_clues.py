@@ -11,6 +11,10 @@ BLACKLIST = ["-across", "-down", "this puzzle", "today's theme",
 
 def process_direction(data, direction, database):
     for answer, clue in zip(data["answers"][direction], data["clues"][direction]):
+        # Skip answers containing non-ascii or non-alphabetic characters
+        if not answer.isascii() or not answer.isalpha():
+            continue
+
         clue_stripped = CLUE_NUMBER_REGEX.sub("", clue)
 
         # Skip clues relative to other clues or puzzle
